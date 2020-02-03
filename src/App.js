@@ -1,40 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
+import Form from './form';
+import { render } from '@testing-library/react';
 
-function calculation({name, price}, e) {
-  e.preventDefault();
-  var buy = (({price} * 0.95) -300);
-  console.log(`${name}` + buy);
+
+class App extends Component {
+
+state = {
+  fields: {}
 }
 
-class Submit extends React.Component{
-  render (){
-   return( 
-    <form onSubmit={calculation}>
-        <label>
-            Name: 
-            <input type="text" name=""/>
-        </label>
-        <label>
-          Price:
-            <input type="text" price=""/>
-        </label>
-        <input type="submit" value="Submit"/>
-    </form>
-    )
-  }
+onSubmit = fields => {
+  this.setState({fields});
+  console.log('App comp got: ', fields)
 }
 
-
-function App() {
+  render() {
     return (
         <div className="App">
             <div>
-                <Submit/>
+                <Form onSubmit={fields => this.onSubmit(fields)} />
+                <p>{JSON.stringify(this.state.fields, null, 2)}</p>
             </div>
         </div>
 
     );
+  }
 }
 
 export default App;
