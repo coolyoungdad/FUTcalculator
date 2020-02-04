@@ -18,6 +18,9 @@ class App extends Component {
     }
 
     pushCalculation = () => {
+        // you can't call this.state.calculations.push because react doesn't let you modify its state directly
+        // only through setState. [...spread] notation for arrays creates a new array with all the elements of the old one
+        // you can add new elements afterwards with commas, effectively pushing
         this.setState({calculationTape: [...this.state.calculationTape, {name: this.state.fullName, buyPrice: this.state.buyPrice}]})
     }
 
