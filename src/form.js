@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export default class Form extends React.Component {
     state = {
         fullName: "",
@@ -10,32 +9,27 @@ export default class Form extends React.Component {
 
     change = e => {
         this.setState({
-            [e.target.name]: e.target.value, 
+            [e.target.name]: e.target.value
         });
 
         this.setState({
-            [this.state.buyPrice]: ((this.state.binPrice * 0.95)-300)
+            [this.state.buyPrice]: ((this.state.binPrice * 0.95) - 300)
         });
-        
+
     }
 
     onSubmit = (e) => {
         e.preventDefault();
         console.log(this.state);
-        this.props.onSubmit(this.state);
-        
-
-
-        
-
-
+        this
+            .props
+            .onSubmit(this.state);
 
         this.setState({
-            fullName: "",
-            binPrice: "",
+            fullName: "", binPrice: "",
             // buyPrice: ""
         })
-        
+
     }
 
     render() {
@@ -55,7 +49,9 @@ export default class Form extends React.Component {
                     ={this.state.binPrice}
                     onChange={e => this.change(e)}/>
 
-                <button onClick={e => this.onSubmit(e)}> Submit </button>
+                <button onClick={e => this.onSubmit(e)}>
+                    Submit
+                </button>
             </form>
         )
     }
