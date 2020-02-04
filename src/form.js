@@ -12,28 +12,29 @@ export default class Form extends React.Component {
         this.setState({
             [e.target.name]: e.target.value, 
         });
+
+        this.setState({
+            [this.state.buyPrice]: ((this.state.binPrice * 0.95)-300)
+        });
         
     }
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.setState({
-            [this.state.buyPrice]: ((this.state.binPrice * 0.95)-300)
-        });
-
+        console.log(this.state);
         this.props.onSubmit(this.state);
         
 
 
-        console.log("Calculation: " + this.state.buyPrice);
+        
 
 
 
-        // this.setState({
-        //     fullName: "",
-        //     binPrice: "",
-        //     buyPrice: ""
-        // })
+        this.setState({
+            fullName: "",
+            binPrice: "",
+            // buyPrice: ""
+        })
         
     }
 

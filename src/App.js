@@ -12,7 +12,8 @@ state = {
 
 onSubmit = fields => {
   this.setState({fields});
-  console.log(fields.fullName + ": " + fields.binPrice)
+  console.log(fields);
+  // console.log(fields.fullName + ": " + fields.binPrice)
 }
 
   render() {
