@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export default class Form extends React.Component {
     state = {
         fullName: "",
@@ -15,6 +16,7 @@ export default class Form extends React.Component {
     onSubmit = (e) => {
         e.preventDefault();
         this.props.onSubmit(this.state);
+        console.log("Calculation: " + ((this.state.binPrice * 0.95)-300));
         this.setState({
             fullName: "",
             binPrice: ""

@@ -12,7 +12,7 @@ state = {
 
 onSubmit = fields => {
   this.setState({fields});
-  console.log('App comp got: ', fields)
+  console.log(fields.fullName + ": " + fields.binPrice)
 }
 
   render() {
@@ -20,7 +20,7 @@ onSubmit = fields => {
         <div className="App">
             <div>
                 <Form onSubmit={fields => this.onSubmit(fields)} />
-                <p>{JSON.stringify(this.state.fields, null, 2)}</p>
+                <p>{JSON.stringify(this.state.fields, null, 3)}</p>
             </div>
         </div>
 
