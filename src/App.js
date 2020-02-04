@@ -5,23 +5,32 @@ import {render} from '@testing-library/react';
 class App extends Component {
 
     state = {
-        fields: {}
+        fullName: "",
+        lowestAvailableBuyItNowPrice: "",
+        buyPrice: "",
+        calculationTape: []
     }
 
-    onSubmit = fields => {
-        this.setState({fields});
-        console.log(fields);
+    updateApp = fields => {
+        this.setState(fields,
+            () => this.setState({buyPrice: (Math.floor(this.state.lowestAvailableBuyItNowPrice * 0.95)-300)})
+        );
+    }
+
+    pushCalculation = () => {
+        this.setState({calculationTape: [...this.state.calculationTape, {name: this.state.fullName, buyPrice: this.state.buyPrice}]})
     }
 
     render() {
         return (
             <div className="App">
                 <div>
-                    <Form onSubmit={fields => this.onSubmit(fields)}/>
-                    <p>Name: {this.state.fields.fullName}</p>
-                    <p>Buy Price: {this.state.fields.buyPrice}</p>
-                    <p>Sell Price: {this.state.fields.binPrice}</p>
+                    <Form updateApp={this.updateApp} pushCalculation={this.pushCalculation}/>
+                    <p>Name: {this.state.fullName}</p>
+                    <p>Buy Price: {this.state.buyPrice}</p>
+                    <p>Sell Price (lowest BIN): {this.state.lowestAvailableBuyItNowPrice}</p>
                 </div>
+                <p>tape {JSON.stringify(this.state.calculationTape)}</p>
             </div>
 
         );

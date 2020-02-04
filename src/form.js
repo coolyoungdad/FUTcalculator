@@ -4,51 +4,35 @@ import React from "react";
 export default class Form extends React.Component {
     state = {
         fullName: "",
-        binPrice: "",
-        buyPrice: ""
+        lowestAvailableBuyItNowPrice: ""
     };
 
-    change = e => {
+    onChange = e => {
         this.setState({
             [e.target.name]: e.target.value, 
+        }, () => {
+            this.props.updateApp(this.state);
         });
-
-        this.setState({buyPrice: ((this.state.binPrice * 0.95)-300)});   
-    }
-
-    onSubmit = (e) => {
-        e.preventDefault();
-        console.log(this.state);
-        this.props.onSubmit(this.state);
-
-
-        this.setState({
-            fullName: "",
-            binPrice: "",
-            buyPrice: ""
-        })
-        
     }
 
     render() {
         return (
-            <form>
+            <>
                 <input
                     name="fullName"
                     placeholder="Player Name"
                     value
                     ={this.state.fullName}
-                    onChange={e => this.change(e)}/>
+                    onChange={this.onChange}/>
 
                 <input
-                    name="binPrice"
+                    name="lowestAvailableBuyItNowPrice"
                     placeholder="Lowest BIN Price"
                     value
-                    ={this.state.binPrice}
-                    onChange={e => this.change(e)}/>
-
-                <button onClick={e => this.onSubmit(e)}> Submit </button>
-            </form>
+                    ={this.state.lowestAvailableBuyItNowPrice}
+                    onChange={this.onChange}/>
+                <button onClick={this.props.pushCalculation}>Push</button>
+                </>
         )
     }
 }
