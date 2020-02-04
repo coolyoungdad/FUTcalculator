@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './App.css';
 import Form from './form';
 import {render} from '@testing-library/react';
-
 class App extends Component {
 
     state = {
@@ -19,7 +18,9 @@ class App extends Component {
             <div className="App">
                 <div>
                     <Form onSubmit={fields => this.onSubmit(fields)}/>
-                    <p>{JSON.stringify(this.state.fields, null, 3)}</p>
+                    <p>Name: {this.state.fields.fullName}</p>
+                    <p>Buy Price: {this.state.fields.buyPrice}</p>
+                    <p>Sell Price: {this.state.fields.binPrice}</p>
                 </div>
             </div>
 
